@@ -41,6 +41,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="MovieApp" id="3Nn-M3-Fxo"/>
+                    <connections>
+                        <outlet property="tableView" destination="j2w-de-Wfs" id="mkX-BE-h5P"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

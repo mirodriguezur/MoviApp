@@ -12,6 +12,9 @@ public protocol RootMovieViewControllerProtocol: AnyObject {}
 public final class RootMovieViewController: UIViewController, RootMovieViewControllerProtocol {
     
     public var presenter: RootMoviePresenterInput?
+    
+    @IBOutlet weak var tableView: UITableView!
+    
 
     public override func viewDidLoad() {
         super.viewDidLoad()
