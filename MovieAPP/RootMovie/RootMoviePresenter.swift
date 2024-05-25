@@ -26,7 +26,7 @@ public final class RootMoviePresenter: RootMoviePresenterInput {
     
     // MARK: - Protocol Methods
     public func onViewAppear() {
-        interactor.loadMovies { [weak self] result in
+        interactor.loadPopularMovies { [weak self] result in
             guard let self = self else { return }
             switch result {
             case let .success(movies):

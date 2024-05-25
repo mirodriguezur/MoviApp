@@ -8,12 +8,13 @@
 import Foundation
 
 public protocol RootMovieInteractorInput {
-    func loadMovies(completion: @escaping (RootMovieInteractor.Result) -> Void)
+    func loadMovies(url: URL, completion: @escaping (RootMovieInteractor.Result) -> Void)
+    func loadPopularMovies(completion: @escaping (RootMovieInteractor.Result) -> Void)
+    func loadTopRatedMovies(completion: @escaping (RootMovieInteractor.Result) -> Void)
 }
 
 final public class RootMovieInteractor: RootMovieInteractorInput {
     
-    private let url: URL
     private let client: HTTPClient
     
     public enum Error: Swift.Error {
@@ -26,12 +27,11 @@ final public class RootMovieInteractor: RootMovieInteractorInput {
         case failure(Error)
     }
     
-    public init(url: URL = URL(string: "https://www.anyvalidurl.com")!, client: HTTPClient = URLSessionHTTPClient()) {
-        self.url = url
+    public init(client: HTTPClient = URLSessionHTTPClient()) {
         self.client = client
     }
     
-    public func loadMovies(completion: @escaping (Result) -> Void) {
+    public func loadMovies(url: URL, completion: @escaping (Result) -> Void) {
         client.get(from: url) { [weak self] result in
             
             guard self != nil else { return }
@@ -47,6 +47,16 @@ final public class RootMovieInteractor: RootMovieInteractorInput {
                 completion(.failure(.connectivity))
             }
         }
+    }
+    
+    public func loadPopularMovies(completion: @escaping (Result) -> Void) {
+        let url = URL(string: "https://www.anyvalidurl.com")!
+        loadMovies(url: url, completion: completion)
+    }
+    
+    public func loadTopRatedMovies(completion: @escaping (Result) -> Void) {
+        let url = URL(string: "https://www.anyvalidurl.com")!
+        loadMovies(url: url, completion: completion)
     }
     
 }

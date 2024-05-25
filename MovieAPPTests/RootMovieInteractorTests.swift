@@ -45,7 +45,7 @@ class RootMovieInteractorTests: XCTestCase {
         super.setUp()
         url = makeAnyURL()
         client = HTTPClientSpy()
-        sut = RootMovieInteractor(url: url, client: client)
+        sut = RootMovieInteractor(client: client)
     }
 
     override func tearDown() {
@@ -55,21 +55,21 @@ class RootMovieInteractorTests: XCTestCase {
     }
     
     func test_load_requestListOfItemsFromURL() {
-        sut.loadMovies() { _ in }
+        sut.loadMovies(url: makeAnyURL()) { _ in }
         
         XCTAssertEqual(client.requestedURLs, [url])
     }
     
     func test_loadTwice_requestsListOfItemsFromURL() {
-        sut.loadMovies() { _ in }
-        sut.loadMovies() { _ in }
+        sut.loadMovies(url: makeAnyURL()) { _ in }
+        sut.loadMovies(url: makeAnyURL()) { _ in }
         
         XCTAssertEqual(client.requestedURLs, [url, url])
     }
     
     func test_load_deliversErrorWhenClientFails() {
         var capturedResults = [RootMovieInteractor.Result]()
-        sut.loadMovies() { capturedResults.append($0)
+        sut.loadMovies(url: makeAnyURL()) { capturedResults.append($0)
         }
         
         let clientError = NSError(domain: "Test", code: 0)
@@ -80,7 +80,7 @@ class RootMovieInteractorTests: XCTestCase {
     
     func test_load_deliversErrorWhenHTTPResponseIsDiferentTo200() {
         var capturedResults = [RootMovieInteractor.Result]()
-        sut.loadMovies { capturedResults.append($0) }
+        sut.loadMovies(url: makeAnyURL()) { capturedResults.append($0) }
         
         let statusResponseWithError = [400, 404, 500, 503]
         statusResponseWithError.forEach { statusCode in
@@ -92,7 +92,7 @@ class RootMovieInteractorTests: XCTestCase {
     
     func test_load_deliversErrorWhenResponseWithInvalidJSON(){
         var capturedResults = [RootMovieInteractor.Result]()
-        sut.loadMovies { capturedResults.append($0)}
+        sut.loadMovies(url: makeAnyURL()) { capturedResults.append($0)}
         
         let invalidJSON = Data(bytes: "invalid json", count: 0)
         client.complete(withStatusCode: 200, data: invalidJSON)
@@ -115,7 +115,7 @@ class RootMovieInteractorTests: XCTestCase {
             ]
         
         var capturedResults = [RootMovieInteractor.Result]()
-        sut.loadMovies { capturedResults.append($0) }
+        sut.loadMovies(url: makeAnyURL()) { capturedResults.append($0) }
         
         let json = try! JSONSerialization.data(withJSONObject: moviesJSON)
         client.complete(withStatusCode: 200, data: json)
@@ -125,7 +125,7 @@ class RootMovieInteractorTests: XCTestCase {
     
     func test_load_afterTheSutHasBeenDeinitializedItShouldReturnNoResult() {
         var capturedResults = [RootMovieInteractor.Result]()
-        sut?.loadMovies { capturedResults.append($0)
+        sut?.loadMovies(url: makeAnyURL()) { capturedResults.append($0)
         }
         
         sut = nil
@@ -137,9 +137,9 @@ class RootMovieInteractorTests: XCTestCase {
     
     //MARK: - helpers
     
-    func makeSUT(url: URL = URL(string: "https://anyvalid-url.com")!) -> (sut: RootMovieInteractor, client: HTTPClientSpy) {
+    func makeSUT() -> (sut: RootMovieInteractor, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
-        let sut =  RootMovieInteractor(url: url, client: client)
+        let sut =  RootMovieInteractor(client: client)
         return(sut, client)
     }
     
