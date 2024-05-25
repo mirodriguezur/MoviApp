@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class BasicMovieTableViewCell: UITableViewCell {
 
@@ -37,7 +38,7 @@ class BasicMovieTableViewCell: UITableViewCell {
     }
     
     func setupCell(with movie: GeneralMovieEntity) {
-        // TODO: Setup image.
+        self.imgView.kf.setImage(with: URL(string: movie.imageURL))
         self.titleLabel.text = movie.title
         self.descriptionLabel.text = movie.overview
         self.scoreLabel.text = String(movie.votes)

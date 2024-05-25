@@ -23,10 +23,17 @@
                                     <segment title="Popular"/>
                                     <segment title="TopRated"/>
                                 </segments>
+                                <connections>
+                                    <action selector="switchViewAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="Uop-LG-asU"/>
+                                </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="j2w-de-Wfs">
                                 <rect key="frame" x="16" y="164" width="361" height="665"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="GGj-bw-yLg"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="89J-Eu-QMT"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>

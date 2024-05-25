@@ -7,7 +7,9 @@
 
 import Foundation
 
-public protocol RootMovieInteractorInput {}
+public protocol RootMovieInteractorInput {
+    func loadMovies(completion: @escaping (RootMovieInteractor.Result) -> Void)
+}
 
 final public class RootMovieInteractor: RootMovieInteractorInput {
     
@@ -24,7 +26,7 @@ final public class RootMovieInteractor: RootMovieInteractorInput {
         case failure(Error)
     }
     
-    public init(url: URL, client: HTTPClient = URLSessionHTTPClient()) {
+    public init(url: URL = URL(string: "https://www.anyvalidurl.com")!, client: HTTPClient = URLSessionHTTPClient()) {
         self.url = url
         self.client = client
     }
