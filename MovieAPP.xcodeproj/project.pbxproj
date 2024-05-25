@@ -9,13 +9,16 @@
 /* Begin PBXBuildFile section */
 		1C343B6A2C0220EF00222E59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C343B692C0220EF00222E59 /* AppDelegate.swift */; };
 		1C343B6C2C0220EF00222E59 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C343B6B2C0220EF00222E59 /* SceneDelegate.swift */; };
-		1C343B6E2C0220EF00222E59 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C343B6D2C0220EF00222E59 /* ViewController.swift */; };
+		1C343B6E2C0220EF00222E59 /* RootMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C343B6D2C0220EF00222E59 /* RootMovieViewController.swift */; };
 		1C343B712C0220EF00222E59 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 1C343B702C0220EF00222E59 /* Base */; };
 		1C343B732C0220F000222E59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C343B722C0220F000222E59 /* Assets.xcassets */; };
 		1C343B762C0220F000222E59 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 1C343B752C0220F000222E59 /* Base */; };
 		1C343B812C0220F000222E59 /* MovieAPPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C343B802C0220F000222E59 /* MovieAPPTests.swift */; };
 		1C343B8B2C0220F000222E59 /* MovieAPPUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C343B8A2C0220F000222E59 /* MovieAPPUITests.swift */; };
 		1C343B8D2C0220F000222E59 /* MovieAPPUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C343B8C2C0220F000222E59 /* MovieAPPUITestsLaunchTests.swift */; };
+		1C343B9C2C02275500222E59 /* RootMoviePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C343B9B2C02275500222E59 /* RootMoviePresenter.swift */; };
+		1C343B9E2C02277600222E59 /* RootMovieInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C343B9D2C02277600222E59 /* RootMovieInteractor.swift */; };
+		1C343BA02C0227CF00222E59 /* RootMovieRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C343B9F2C0227CF00222E59 /* RootMovieRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +42,7 @@
 		1C343B662C0220EF00222E59 /* MovieAPP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieAPP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C343B692C0220EF00222E59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1C343B6B2C0220EF00222E59 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1C343B6D2C0220EF00222E59 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1C343B6D2C0220EF00222E59 /* RootMovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootMovieViewController.swift; sourceTree = "<group>"; };
 		1C343B702C0220EF00222E59 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1C343B722C0220F000222E59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1C343B752C0220F000222E59 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +52,9 @@
 		1C343B862C0220F000222E59 /* MovieAPPUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieAPPUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C343B8A2C0220F000222E59 /* MovieAPPUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieAPPUITests.swift; sourceTree = "<group>"; };
 		1C343B8C2C0220F000222E59 /* MovieAPPUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieAPPUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		1C343B9B2C02275500222E59 /* RootMoviePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootMoviePresenter.swift; sourceTree = "<group>"; };
+		1C343B9D2C02277600222E59 /* RootMovieInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootMovieInteractor.swift; sourceTree = "<group>"; };
+		1C343B9F2C0227CF00222E59 /* RootMovieRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootMovieRouter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,9 +105,9 @@
 		1C343B682C0220EF00222E59 /* MovieAPP */ = {
 			isa = PBXGroup;
 			children = (
+				1C343B992C02242B00222E59 /* RootMovie */,
 				1C343B692C0220EF00222E59 /* AppDelegate.swift */,
 				1C343B6B2C0220EF00222E59 /* SceneDelegate.swift */,
-				1C343B6D2C0220EF00222E59 /* ViewController.swift */,
 				1C343B6F2C0220EF00222E59 /* Main.storyboard */,
 				1C343B722C0220F000222E59 /* Assets.xcassets */,
 				1C343B742C0220F000222E59 /* LaunchScreen.storyboard */,
@@ -125,6 +131,17 @@
 				1C343B8C2C0220F000222E59 /* MovieAPPUITestsLaunchTests.swift */,
 			);
 			path = MovieAPPUITests;
+			sourceTree = "<group>";
+		};
+		1C343B992C02242B00222E59 /* RootMovie */ = {
+			isa = PBXGroup;
+			children = (
+				1C343B6D2C0220EF00222E59 /* RootMovieViewController.swift */,
+				1C343B9B2C02275500222E59 /* RootMoviePresenter.swift */,
+				1C343B9D2C02277600222E59 /* RootMovieInteractor.swift */,
+				1C343B9F2C0227CF00222E59 /* RootMovieRouter.swift */,
+			);
+			path = RootMovie;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,9 +275,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1C343B6E2C0220EF00222E59 /* ViewController.swift in Sources */,
+				1C343B6E2C0220EF00222E59 /* RootMovieViewController.swift in Sources */,
 				1C343B6A2C0220EF00222E59 /* AppDelegate.swift in Sources */,
 				1C343B6C2C0220EF00222E59 /* SceneDelegate.swift in Sources */,
+				1C343BA02C0227CF00222E59 /* RootMovieRouter.swift in Sources */,
+				1C343B9E2C02277600222E59 /* RootMovieInteractor.swift in Sources */,
+				1C343B9C2C02275500222E59 /* RootMoviePresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
