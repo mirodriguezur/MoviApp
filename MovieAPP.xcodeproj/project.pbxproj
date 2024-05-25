@@ -20,6 +20,9 @@
 		1C343B9E2C02277600222E59 /* RootMovieInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C343B9D2C02277600222E59 /* RootMovieInteractor.swift */; };
 		1C343BA02C0227CF00222E59 /* RootMovieRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C343B9F2C0227CF00222E59 /* RootMovieRouter.swift */; };
 		1C343BA32C0230B800222E59 /* GeneralMovieEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C343BA22C0230B800222E59 /* GeneralMovieEntity.swift */; };
+		1C343BA62C02334500222E59 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C343BA52C02334500222E59 /* HTTPClient.swift */; };
+		1C343BA82C0234A500222E59 /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C343BA72C0234A500222E59 /* URLSessionHTTPClient.swift */; };
+		1C343BAB2C02377200222E59 /* RootMovieInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C343BAA2C02377200222E59 /* RootMovieInteractorTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +60,9 @@
 		1C343B9D2C02277600222E59 /* RootMovieInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootMovieInteractor.swift; sourceTree = "<group>"; };
 		1C343B9F2C0227CF00222E59 /* RootMovieRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootMovieRouter.swift; sourceTree = "<group>"; };
 		1C343BA22C0230B800222E59 /* GeneralMovieEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralMovieEntity.swift; sourceTree = "<group>"; };
+		1C343BA52C02334500222E59 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		1C343BA72C0234A500222E59 /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
+		1C343BAA2C02377200222E59 /* RootMovieInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootMovieInteractorTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +113,7 @@
 		1C343B682C0220EF00222E59 /* MovieAPP */ = {
 			isa = PBXGroup;
 			children = (
+				1C343BA42C02331500222E59 /* Networking */,
 				1C343B992C02242B00222E59 /* RootMovie */,
 				1C343B692C0220EF00222E59 /* AppDelegate.swift */,
 				1C343B6B2C0220EF00222E59 /* SceneDelegate.swift */,
@@ -122,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				1C343B802C0220F000222E59 /* MovieAPPTests.swift */,
+				1C343BAA2C02377200222E59 /* RootMovieInteractorTests.swift */,
 			);
 			path = MovieAPPTests;
 			sourceTree = "<group>";
@@ -153,6 +161,15 @@
 				1C343BA22C0230B800222E59 /* GeneralMovieEntity.swift */,
 			);
 			path = Entities;
+			sourceTree = "<group>";
+		};
+		1C343BA42C02331500222E59 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				1C343BA52C02334500222E59 /* HTTPClient.swift */,
+				1C343BA72C0234A500222E59 /* URLSessionHTTPClient.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,11 +305,13 @@
 			files = (
 				1C343B6E2C0220EF00222E59 /* RootMovieViewController.swift in Sources */,
 				1C343B6A2C0220EF00222E59 /* AppDelegate.swift in Sources */,
+				1C343BA62C02334500222E59 /* HTTPClient.swift in Sources */,
 				1C343B6C2C0220EF00222E59 /* SceneDelegate.swift in Sources */,
 				1C343BA32C0230B800222E59 /* GeneralMovieEntity.swift in Sources */,
 				1C343BA02C0227CF00222E59 /* RootMovieRouter.swift in Sources */,
 				1C343B9E2C02277600222E59 /* RootMovieInteractor.swift in Sources */,
 				1C343B9C2C02275500222E59 /* RootMoviePresenter.swift in Sources */,
+				1C343BA82C0234A500222E59 /* URLSessionHTTPClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,6 +320,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C343B812C0220F000222E59 /* MovieAPPTests.swift in Sources */,
+				1C343BAB2C02377200222E59 /* RootMovieInteractorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

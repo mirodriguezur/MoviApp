@@ -17,6 +17,8 @@ public final class RootMovieViewController: UIViewController, RootMovieViewContr
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
+    
+    //TODO: Set UITableView delegates in the storyboard
 
 
 }

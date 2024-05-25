@@ -19,8 +19,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let rootMovieViewController = storyboard.instantiateViewController(identifier: "RootMovieViewController") as? RootMovieViewController else {
             fatalError("Unable to instantiate RootMovieViewController from Main storyboard")
         }
-        
-        let interactor = RootMovieInteractor()
+        // TODO: Replace the URL with a valid one
+        let url = URL(string: "https://anyurl.com")!
+        let interactor = RootMovieInteractor(url: url)
         let router = RootMovieRouter()
         let presenter = RootMoviePresenter(interactor: interactor, router: router)
         
