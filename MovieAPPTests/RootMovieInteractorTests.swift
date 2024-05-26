@@ -54,7 +54,7 @@ class RootMovieInteractorTests: XCTestCase {
        super.tearDown()
     }
     
-    func test_load_requestListOfItemsFromURL() {
+    func test_load_requestListOfMoviesFromURL() {
         sut.loadMovies(url: makeAnyURL()) { _ in }
         
         XCTAssertEqual(client.requestedURLs, [url])
@@ -100,7 +100,7 @@ class RootMovieInteractorTests: XCTestCase {
         XCTAssertEqual(capturedResults, [.failure(.invalidData)])
     }
     
-    func test_load_deliversItemsOn200HTTPResponseWithJSONItems() {
+    func test_load_deliversListOfMoviesOn200HTTPResponseWithJSONItems() {
         let movie1 = makeMovieItem()
         let movie1JSON = makeJSON(movie: movie1)
         
