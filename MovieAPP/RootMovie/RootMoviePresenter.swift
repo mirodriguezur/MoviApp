@@ -43,8 +43,13 @@ public final class RootMoviePresenter: RootMoviePresenterInput {
                 case let .success(movies):
                     self.listOfMovies = movies
                     self.view?.update()
-                case .failure(_):
-                    self.view?.showErrorAlert()
+                case let .failure(error):
+                    switch error {
+                    case .connectivity:
+                        self.view?.showConnectivityErrorAlert()
+                    case .invalidData:
+                        self.view?.showInvalidDataErrorAlert()
+                    }
                 }
             }
         case .topRatedMovie:
@@ -54,11 +59,15 @@ public final class RootMoviePresenter: RootMoviePresenterInput {
                 case let .success(movies):
                     self.listOfMovies = movies
                     self.view?.update()
-                case .failure(_):
-                    self.view?.showErrorAlert()
+                case let .failure(error):
+                    switch error {
+                    case .connectivity:
+                        self.view?.showConnectivityErrorAlert()
+                    case .invalidData:
+                        self.view?.showInvalidDataErrorAlert()
+                    }
                 }
             }
         }
     }
-    
 }

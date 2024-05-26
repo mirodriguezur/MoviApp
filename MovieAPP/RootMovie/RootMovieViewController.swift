@@ -9,7 +9,8 @@ import UIKit
 
 public protocol RootMovieViewControllerProtocol: AnyObject {
     func update()
-    func showErrorAlert()
+    func showConnectivityErrorAlert()
+    func showInvalidDataErrorAlert()
 }
 
 public final class RootMovieViewController: UIViewController, RootMovieViewControllerProtocol {
@@ -42,8 +43,25 @@ public final class RootMovieViewController: UIViewController, RootMovieViewContr
         }
     }
     
-    public func showErrorAlert() {
-        // TODO: implement logic to show alert
+    public func showConnectivityErrorAlert() {
+        let alert = "The connection attempt failed. Please try again."
+        showAlert(alert)
+    }
+    
+    public func showInvalidDataErrorAlert() {
+        let alert = "Invalid data received, please try again."
+        showAlert(alert)
+    }
+    
+    private func showAlert(_ alert: String) {
+        DispatchQueue.main.async {
+            let message = UIAlertController(title: "Error", message: alert, preferredStyle: .alert)
+            
+            let action = UIAlertAction(title: "OK", style: .default)
+            message.addAction(action)
+            
+            self.present(message, animated: true, completion: nil)
+        }
     }
 }
 
