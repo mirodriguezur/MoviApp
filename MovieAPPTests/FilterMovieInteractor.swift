@@ -1,14 +1,13 @@
 //
-//  MovieAPPTests.swift
+//  FilterMovieInteractor.swift
 //  MovieAPPTests
 //
-//  Created by Michael Alexander Rodriguez Urbina on 25/05/24.
+//  Created by Michael Alexander Rodriguez Urbina on 26/05/24.
 //
 
 import XCTest
-@testable import MovieAPP
 
-final class MovieAPPTests: XCTestCase {
+final class FilterMovieInteractor: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

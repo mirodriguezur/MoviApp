@@ -8,36 +8,6 @@
 import XCTest
 import MovieAPP
 
-// MARK: Spies/Mocks
-
-class RootMovieInteractorSpy: RootMovieInteractorInput {
-    
-    var loadPopularMoviesCalled = false
-    var loadTopRatedMoviesCalled = false
-    
-    func loadMovies(url: URL, completion: @escaping (MovieAPP.RootMovieInteractor.Result) -> Void) {
-    }
-    
-    func loadPopularMovies(completion: @escaping (MovieAPP.RootMovieInteractor.Result) -> Void) {
-        loadPopularMoviesCalled = true
-    }
-    
-    func loadTopRatedMovies(completion: @escaping (MovieAPP.RootMovieInteractor.Result) -> Void) {
-        loadTopRatedMoviesCalled = true
-    }
-}
-
-class RootMovieRouterSpy: RootMovieRouterProtocol {
-    var navigateToFilterMovieCalled = false
-    
-    func navigateToFilterMovieModule() {
-        navigateToFilterMovieCalled = true
-    }
-}
-
-
-// MARK: RootMoviePresenterTests
-
 final class RootMoviePresenterTests: XCTestCase {
     var sut: RootMoviePresenter!
     var interactor: RootMovieInteractorSpy!

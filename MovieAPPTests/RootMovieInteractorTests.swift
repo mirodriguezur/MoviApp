@@ -9,31 +9,6 @@ import XCTest
 import Foundation
 import MovieAPP
 
-// MARK: Spies/Mocks
-
-class HTTPClientSpy: HTTPClient {
-    
-    var requestedURLs = [URL]()
-    var completions = [(HTTPClientResult) -> Void]()
-    
-    func get(from url: URL, completion: @escaping (HTTPClientResult) -> Void) {
-        requestedURLs.append(url)
-        completions.append(completion)
-    }
-    
-    func complete(with error: Error, at index: Int = 0) {
-        completions[index](.failure(error))
-    }
-    
-    func complete(withStatusCode code: Int, data: Data = Data(), at index: Int = 0) {
-        let response = HTTPURLResponse(url: requestedURLs[index],
-                                       statusCode: code,
-                                       httpVersion: nil,
-                                       headerFields: nil)!
-        completions[index](.success(data, response))
-    }
-}
-
 // MARK: RootMovieInteractorTests
 
 class RootMovieInteractorTests: XCTestCase {
@@ -148,20 +123,28 @@ class RootMovieInteractorTests: XCTestCase {
     }
     
     private func makeMovieItem(id: Int = 1,
-                          title: String = "any title",
-                          overview: String = "any description",
-                          imageURL: String = "https://anyurl.com",
-                          votes: Double = 5.0) -> GeneralMovieEntity {
-        GeneralMovieEntity(id: id, title: title, overview: overview, imageURL: imageURL, votes: votes)
+                               title: String = "any title",
+                               overview: String = "any description",
+                               imageURL: String = "https://anyurl.com",
+                               votes: Double = 5.0,
+                               language: String = "en",
+                               adult: Bool = false) -> GeneralMovieEntity {
+        GeneralMovieEntity(id: id,
+                           title: title,
+                           overview: overview,
+                           imageURL: imageURL,
+                           votes: votes,
+                           language: language,
+                           adult: adult)
     }
     
     private func makeJSON(movie: GeneralMovieEntity) -> [String: Any] {
         return [
-            "adult": false,
+            "adult": movie.adult,
             "backdrop_path": "",
             "genre_ids": [28, 12, 878],
             "id": movie.id,
-            "original_language": "en",
+            "original_language": movie.language,
             "original_title": "",
             "overview": movie.overview,
             "popularity": 5.0,
