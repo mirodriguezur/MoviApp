@@ -9,18 +9,18 @@ import UIKit
 
 class FilterMovieViewController: UIViewController {
     
-    @IBOutlet weak var categoryTextField: UITextField!
+    @IBOutlet weak var languageTextField: UITextField!
     private let presenter: FilterMoviePresenterInput
     private let pickerView = UIPickerView()
     
-    private let categories = ["Adult", "Original language", "Vote average"]
+    private let categories = ["English", "Spanish", "Korean"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Filter movies by categories"
         pickerView.delegate = self
         pickerView.dataSource = self
-        categoryTextField.inputView = pickerView
+        languageTextField.inputView = pickerView
     }
     
     init(presenter: FilterMoviePresenterInput) {
@@ -48,8 +48,8 @@ extension FilterMovieViewController: UIPickerViewDelegate, UIPickerViewDataSourc
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        categoryTextField.text = categories[row]
-        categoryTextField.resignFirstResponder()
+        languageTextField.text = categories[row]
+        languageTextField.resignFirstResponder()
     }
     
 }
