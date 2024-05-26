@@ -11,6 +11,7 @@ public protocol RootMoviePresenterInput: AnyObject {
     var listOfMovies: [GeneralMovieEntity] { get }
     func onViewAppear()
     func handleSegmentedControllerTapped(with mode: RootMovieMode)
+    func handleFilterButtonTapped()
 }
 
 public enum RootMovieMode {
@@ -69,5 +70,9 @@ public final class RootMoviePresenter: RootMoviePresenterInput {
                 }
             }
         }
+    }
+    
+    public func handleFilterButtonTapped() {
+        router.navigateToFilterMovieModule()
     }
 }

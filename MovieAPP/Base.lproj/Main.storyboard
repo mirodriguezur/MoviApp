@@ -47,7 +47,14 @@
                             <constraint firstItem="j2w-de-Wfs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="xEk-20-sK9"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="MovieApp" id="3Nn-M3-Fxo"/>
+                    <navigationItem key="navigationItem" title="MovieApp" id="3Nn-M3-Fxo">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="line.3.horizontal.decrease.circle" catalog="system" id="rhw-ur-oSs">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="filterButtonAction:" destination="BYZ-38-t0r" id="lBT-iJ-lr5"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="j2w-de-Wfs" id="mkX-BE-h5P"/>
                     </connections>
@@ -76,6 +83,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="line.3.horizontal.decrease.circle" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

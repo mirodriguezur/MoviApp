@@ -7,8 +7,17 @@
 
 import Foundation
 
-public final class RootMovieRouter {
+public protocol RootMovieRouterProtocol {
+    func navigateToFilterMovieModule()
+}
+
+public final class RootMovieRouter: RootMovieRouterProtocol {
     var viewController: RootMovieViewController?
     
     public init(){}
+    
+    public func navigateToFilterMovieModule() {
+        let filterMovieViewController = FilterMovieRouter.createFilterMovieViewController()
+        self.viewController?.navigationController?.pushViewController(filterMovieViewController, animated: true)
+    }
 }

@@ -31,6 +31,10 @@ public final class RootMovieViewController: UIViewController, RootMovieViewContr
         }
     }
     
+    @IBAction func filterButtonAction(_ sender: UIBarButtonItem) {
+        presenter?.handleFilterButtonTapped()
+    }
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.onViewAppear()
