@@ -102,5 +102,10 @@ extension RootMovieViewController: UITableViewDelegate, UITableViewDataSource {
         cell.setupCell(with: movie)
         return cell
     }
+    
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let movies = presenter?.listOfMovies[indexPath.row] else { return }
+        presenter?.handleCellSelected(with: movies)
+    }
 }
 

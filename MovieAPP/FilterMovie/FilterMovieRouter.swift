@@ -7,7 +7,7 @@
 
 import Foundation
 
-class FilterMovieRouter {
+public final class FilterMovieRouter {
     static func createFilterMovieViewController() -> FilterMovieViewController {
         let interactor = FilterMovieInteractor()
         let presenter = FilterMoviePresenter(interactor: interactor)
