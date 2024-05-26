@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol FilterMovieInteractorInput {
-    
+    func loadFilteredMovies(parameters: FilterMovieParameters, completion: @escaping (FilterMovieInteractor.Result) -> Void)
 }
 
 public final class FilterMovieInteractor: FilterMovieInteractorInput {
@@ -29,10 +29,9 @@ public final class FilterMovieInteractor: FilterMovieInteractorInput {
         self.client = client
     }
     
-    public func loadFilteredMovies(category: String, completion: @escaping (Result) -> Void) {
-        //let url = "https://api.themoviedb.org/3/discover/movie"
+    public func loadFilteredMovies(parameters: FilterMovieParameters, completion: @escaping (Result) -> Void) {
+        let url = buildUrlComponents(parameters: parameters)
         
-        let url = URL(string: "https://api.themoviedb.org/3/discover/movie")!
         client.get(from: url) { [weak self] result in
             
             guard self != nil else { return }
@@ -48,6 +47,30 @@ public final class FilterMovieInteractor: FilterMovieInteractorInput {
                 completion(.failure(.connectivity))
             }
         }
+    }
+    
+    private func buildUrlComponents(parameters: FilterMovieParameters) -> URL {
+        var urlComponents = URLComponents(string: "https://api.themoviedb.org/3/discover/movie")!
+        var queryItems = [URLQueryItem(name: "api_key", value: apiKey)]
+        
+        // Build query items based on filter parameters
+        if !parameters.language.isEmpty {
+            queryItems.append(.init(name: "with_original_language", value: parameters.language))
+        }
+        if !parameters.forAdults.isEmpty {
+            queryItems.append(.init(name: "include_adult", value: parameters.forAdults))
+        }
+        if !parameters.average.isEmpty {
+            var operatorName: String = "lte"
+            if parameters.operatorRange == "lte" {
+                operatorName = "vote_average.lte"
+            } else if parameters.operatorRange == "gte" {
+                operatorName = "vote_average.gte"
+            }
+            queryItems.append(.init(name: operatorName, value: parameters.average))
+        }
+        urlComponents.queryItems = queryItems
+        return urlComponents.url!
     }
 }
 

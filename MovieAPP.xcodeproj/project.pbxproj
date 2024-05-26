@@ -32,6 +32,7 @@
 		1CB077652C02D0220081865D /* FilterMovieRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB077642C02D0220081865D /* FilterMovieRouter.swift */; };
 		1CB077682C02D0450081865D /* FilterMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB077662C02D0450081865D /* FilterMovieViewController.swift */; };
 		1CB077692C02D0450081865D /* FilterMovieViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1CB077672C02D0450081865D /* FilterMovieViewController.xib */; };
+		1CB0776B2C0320B80081865D /* FilterMovieParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0776A2C0320B80081865D /* FilterMovieParameters.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,7 @@
 		1CB077642C02D0220081865D /* FilterMovieRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterMovieRouter.swift; sourceTree = "<group>"; };
 		1CB077662C02D0450081865D /* FilterMovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterMovieViewController.swift; sourceTree = "<group>"; };
 		1CB077672C02D0450081865D /* FilterMovieViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterMovieViewController.xib; sourceTree = "<group>"; };
+		1CB0776A2C0320B80081865D /* FilterMovieParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterMovieParameters.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +204,7 @@
 				1CB077642C02D0220081865D /* FilterMovieRouter.swift */,
 				1CB077662C02D0450081865D /* FilterMovieViewController.swift */,
 				1CB077672C02D0450081865D /* FilterMovieViewController.xib */,
+				1CB0776A2C0320B80081865D /* FilterMovieParameters.swift */,
 			);
 			path = FilterMovie;
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 				1C343B6C2C0220EF00222E59 /* SceneDelegate.swift in Sources */,
 				1C343BA32C0230B800222E59 /* GeneralMovieEntity.swift in Sources */,
 				1C343BA02C0227CF00222E59 /* RootMovieRouter.swift in Sources */,
+				1CB0776B2C0320B80081865D /* FilterMovieParameters.swift in Sources */,
 				1C343B9E2C02277600222E59 /* RootMovieInteractor.swift in Sources */,
 				1C343B9C2C02275500222E59 /* RootMoviePresenter.swift in Sources */,
 				1C343BA82C0234A500222E59 /* URLSessionHTTPClient.swift in Sources */,

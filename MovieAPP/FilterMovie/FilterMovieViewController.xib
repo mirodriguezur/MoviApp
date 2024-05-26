@@ -11,7 +11,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FilterMovieViewController" customModule="MovieAPP" customModuleProvider="target">
             <connections>
+                <outlet property="adultSwitch" destination="g8t-K4-jwH" id="GdQ-JT-TT0"/>
+                <outlet property="averageVotesTextField" destination="VB2-79-UQ9" id="6Qb-wf-4SP"/>
                 <outlet property="languageTextField" destination="dZD-xn-Gwt" id="Fda-AU-5JQ"/>
+                <outlet property="rangeSegmentedControl" destination="Xik-2a-YbO" id="gr2-q4-jGK"/>
+                <outlet property="tableView" destination="eR5-SH-3zx" id="at6-Ij-WYr"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -62,6 +66,9 @@
                     <rect key="frame" x="158" y="201" width="77.333333333333314" height="35"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="filled" title="Search"/>
+                    <connections>
+                        <action selector="searchButtonAction:" destination="-1" eventType="touchUpInside" id="4X4-aS-4gp"/>
+                    </connections>
                 </button>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="eR5-SH-3zx">
                     <rect key="frame" x="10" y="246" width="373" height="572"/>

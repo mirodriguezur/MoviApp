@@ -7,9 +7,10 @@
 
 import Foundation
 
+public let apiKey: String = "ef30bdf923f88a7f6ced5bfc065076b7"
+
 public class URLSessionHTTPClient: HTTPClient {
     
-    private let apiKey: String = "ef30bdf923f88a7f6ced5bfc065076b7"
     private let session: URLSession
     
     public init(session: URLSession = .shared) {
@@ -19,8 +20,7 @@ public class URLSessionHTTPClient: HTTPClient {
     private struct UnexpectedValuesRepresentation: Error {}
     
     public func get(from url: URL, completion: @escaping (HTTPClientResult) -> Void) {
-        let validUrl = completeUrl(url)
-        session.dataTask(with: validUrl) { data, response, error in
+        session.dataTask(with: url) { data, response, error in
             if let error = error {
                 completion(.failure(error))
             } else if let data = data, let response = response as? HTTPURLResponse {
@@ -29,10 +29,5 @@ public class URLSessionHTTPClient: HTTPClient {
                 completion(.failure(UnexpectedValuesRepresentation()))
             }
         }.resume()
-    }
-    
-    private func completeUrl(_ url: URL) -> URL {
-        let validUrl = url.absoluteString + "?api_key=" + apiKey
-        return URL(string: validUrl)!
     }
 }

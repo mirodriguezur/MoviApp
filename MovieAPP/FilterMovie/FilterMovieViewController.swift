@@ -7,11 +7,23 @@
 
 import UIKit
 
-class FilterMovieViewController: UIViewController {
+public protocol FilterMovieViewControllerProtocol: AnyObject {
+    func update()
+    func showConnectivityErrorAlert()
+    func showInvalidDataErrorAlert()
+}
+
+class FilterMovieViewController: UIViewController, FilterMovieViewControllerProtocol {
+    
+    private let presenter: FilterMoviePresenterInput
     
     @IBOutlet weak var languageTextField: UITextField!
-    private let presenter: FilterMoviePresenterInput
     private let pickerView = UIPickerView()
+    
+    @IBOutlet weak var adultSwitch: UISwitch!
+    @IBOutlet weak var rangeSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var averageVotesTextField: UITextField!
+    @IBOutlet weak var tableView: UITableView!
     
     private let categories = ["English", "Spanish", "Korean"]
 
@@ -21,6 +33,7 @@ class FilterMovieViewController: UIViewController {
         pickerView.delegate = self
         pickerView.dataSource = self
         languageTextField.inputView = pickerView
+        setupTableView()
     }
     
     init(presenter: FilterMoviePresenterInput) {
@@ -29,9 +42,44 @@ class FilterMovieViewController: UIViewController {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not een implemented")
+        fatalError("init(coder:) has not been implemented")
     }
-
+    
+    @IBAction func searchButtonAction(_ sender: UIButton) {
+        presenter.handleSearchButtonTapped(language: languageTextField.text ?? "English",
+                                          forAdults: adultSwitch.isOn,
+                                      operatorName: rangeSegmentedControl.selectedSegmentIndex,
+                                            average: averageVotesTextField.text ?? "5")
+    }
+    
+    // MARK: FilterMovieViewControllerProtocol
+    
+    func update() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+    public func showConnectivityErrorAlert() {
+        let alert = "The connection attempt failed. Please try again."
+        showAlert(alert)
+    }
+    
+    public func showInvalidDataErrorAlert() {
+        let alert = "Invalid data received, please try again."
+        showAlert(alert)
+    }
+    
+    private func showAlert(_ alert: String) {
+        DispatchQueue.main.async {
+            let message = UIAlertController(title: "Error", message: alert, preferredStyle: .alert)
+            
+            let action = UIAlertAction(title: "OK", style: .default)
+            message.addAction(action)
+            
+            self.present(message, animated: true, completion: nil)
+        }
+    }
 }
 
 extension FilterMovieViewController: UIPickerViewDelegate, UIPickerViewDataSource {
@@ -51,5 +99,39 @@ extension FilterMovieViewController: UIPickerViewDelegate, UIPickerViewDataSourc
         languageTextField.text = categories[row]
         languageTextField.resignFirstResponder()
     }
-    
 }
+
+extension FilterMovieViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    public func setupTableView() {
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        
+        registerCell()
+    }
+    
+    func registerCell() {
+        tableView.register(BasicMovieTableViewCell.register(), forCellReuseIdentifier: BasicMovieTableViewCell.identifier)
+    }
+    
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        150
+    }
+    
+    public func numberOfSections(in tableView: UITableView) -> Int {
+        1
+    }
+    
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        presenter.listOfMovies.count
+    }
+    
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: BasicMovieTableViewCell.identifier, for: indexPath) as? BasicMovieTableViewCell else {
+            return UITableViewCell()
+        }
+        cell.setupCell(with: presenter.listOfMovies[indexPath.row])
+        return cell
+    }
+}
+

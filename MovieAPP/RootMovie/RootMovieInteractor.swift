@@ -50,12 +50,28 @@ final public class RootMovieInteractor: RootMovieInteractorInput {
     }
     
     public func loadPopularMovies(completion: @escaping (Result) -> Void) {
-        let url = URL(string: "https://api.themoviedb.org/3/movie/popular")!
+        var components = URLComponents(string: "https://api.themoviedb.org/3/movie/popular")
+        let queryItem = URLQueryItem(name: "api_key", value: apiKey)
+        components?.queryItems = [queryItem]
+        
+        guard let url = components?.url else {
+            print("Error creating the URL")
+            return
+        }
+        
         loadMovies(url: url, completion: completion)
     }
     
     public func loadTopRatedMovies(completion: @escaping (Result) -> Void) {
-        let url = URL(string: "https://api.themoviedb.org/3/movie/top_rated")!
+        var components = URLComponents(string: "https://api.themoviedb.org/3/movie/top_rated")
+        let queryItem = URLQueryItem(name: "api_key", value: apiKey)
+        components?.queryItems = [queryItem]
+        
+        guard let url = components?.url else {
+            print("Error creating the URL")
+            return
+        }
+        
         loadMovies(url: url, completion: completion)
     }
     
