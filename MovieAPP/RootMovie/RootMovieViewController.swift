@@ -21,10 +21,10 @@ public final class RootMovieViewController: UIViewController, RootMovieViewContr
     @IBAction func switchViewAction(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
-            presenter?.onViewAppear()
+            presenter?.handleSegmentedControllerTapped(with: .popularMovie)
             break
         case 1:
-            break
+            presenter?.handleSegmentedControllerTapped(with: .topRatedMovie)
         default:
             break
         }
@@ -32,7 +32,7 @@ public final class RootMovieViewController: UIViewController, RootMovieViewContr
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        //presenter?.onViewAppear()
+        presenter?.onViewAppear()
         setupTableView()
     }
     

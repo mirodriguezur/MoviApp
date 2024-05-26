@@ -26,6 +26,7 @@
 		1C7314CA2C026F4C00C0DF8D /* BasicMovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7314C82C026F4C00C0DF8D /* BasicMovieTableViewCell.swift */; };
 		1C7314CB2C026F4C00C0DF8D /* BasicMovieTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C7314C92C026F4C00C0DF8D /* BasicMovieTableViewCell.xib */; };
 		1C7314CE2C028B1500C0DF8D /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1C7314CD2C028B1500C0DF8D /* Kingfisher */; };
+		1C7314D02C02AD4300C0DF8D /* RootMoviePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7314CF2C02AD4300C0DF8D /* RootMoviePresenterTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		1C343BAA2C02377200222E59 /* RootMovieInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootMovieInteractorTests.swift; sourceTree = "<group>"; };
 		1C7314C82C026F4C00C0DF8D /* BasicMovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicMovieTableViewCell.swift; sourceTree = "<group>"; };
 		1C7314C92C026F4C00C0DF8D /* BasicMovieTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BasicMovieTableViewCell.xib; sourceTree = "<group>"; };
+		1C7314CF2C02AD4300C0DF8D /* RootMoviePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootMoviePresenterTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 			children = (
 				1C343B802C0220F000222E59 /* MovieAPPTests.swift */,
 				1C343BAA2C02377200222E59 /* RootMovieInteractorTests.swift */,
+				1C7314CF2C02AD4300C0DF8D /* RootMoviePresenterTests.swift */,
 			);
 			path = MovieAPPTests;
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C7314D02C02AD4300C0DF8D /* RootMoviePresenterTests.swift in Sources */,
 				1C343B812C0220F000222E59 /* MovieAPPTests.swift in Sources */,
 				1C343BAB2C02377200222E59 /* RootMovieInteractorTests.swift in Sources */,
 			);

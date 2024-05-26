@@ -38,7 +38,7 @@ class BasicMovieTableViewCell: UITableViewCell {
     }
     
     func setupCell(with movie: GeneralMovieEntity) {
-        self.imgView.kf.setImage(with: URL(string: movie.imageURL))
+        self.imgView.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/w200" + movie.imageURL))
         self.titleLabel.text = movie.title
         self.descriptionLabel.text = movie.overview
         self.scoreLabel.text = String(movie.votes)

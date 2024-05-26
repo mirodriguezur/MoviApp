@@ -10,7 +10,12 @@ import Foundation
 public protocol RootMoviePresenterInput: AnyObject {
     var listOfMovies: [GeneralMovieEntity] { get }
     func onViewAppear()
-    func handleSegmentedControllerTapped()
+    func handleSegmentedControllerTapped(with mode: RootMovieMode)
+}
+
+public enum RootMovieMode {
+    case popularMovie
+    case topRatedMovie
 }
 
 public final class RootMoviePresenter: RootMoviePresenterInput {
@@ -19,27 +24,41 @@ public final class RootMoviePresenter: RootMoviePresenterInput {
     weak var view: RootMovieViewControllerProtocol?
     public var listOfMovies: [GeneralMovieEntity] = []
     
-    init(interactor: RootMovieInteractorInput, router: RootMovieRouter) {
+    public init(interactor: RootMovieInteractorInput, router: RootMovieRouter) {
         self.interactor = interactor
         self.router = router
     }
     
     // MARK: - Protocol Methods
     public func onViewAppear() {
-        interactor.loadPopularMovies { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case let .success(movies):
-                self.listOfMovies = movies
-                self.view?.update()
-            case .failure(_):
-                self.view?.showErrorAlert()
-            }
-        }
+        handleSegmentedControllerTapped(with: .popularMovie)
     }
     
-    public func handleSegmentedControllerTapped() {
-        // TODO: Implement the logic
+    public func handleSegmentedControllerTapped(with mode: RootMovieMode) {
+        switch mode {
+        case .popularMovie:
+            interactor.loadPopularMovies { [weak self] result in
+                guard let self = self else { return }
+                switch result {
+                case let .success(movies):
+                    self.listOfMovies = movies
+                    self.view?.update()
+                case .failure(_):
+                    self.view?.showErrorAlert()
+                }
+            }
+        case .topRatedMovie:
+            interactor.loadTopRatedMovies { [weak self] result in
+                guard let self = self else { return }
+                switch result {
+                case let .success(movies):
+                    self.listOfMovies = movies
+                    self.view?.update()
+                case .failure(_):
+                    self.view?.showErrorAlert()
+                }
+            }
+        }
     }
     
 }

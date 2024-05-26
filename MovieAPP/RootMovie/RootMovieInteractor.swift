@@ -50,12 +50,12 @@ final public class RootMovieInteractor: RootMovieInteractorInput {
     }
     
     public func loadPopularMovies(completion: @escaping (Result) -> Void) {
-        let url = URL(string: "https://www.anyvalidurl.com")!
+        let url = URL(string: "https://api.themoviedb.org/3/movie/popular")!
         loadMovies(url: url, completion: completion)
     }
     
     public func loadTopRatedMovies(completion: @escaping (Result) -> Void) {
-        let url = URL(string: "https://www.anyvalidurl.com")!
+        let url = URL(string: "https://api.themoviedb.org/3/movie/top_rated")!
         loadMovies(url: url, completion: completion)
     }
     

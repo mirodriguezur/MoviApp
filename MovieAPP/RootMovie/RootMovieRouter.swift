@@ -7,6 +7,8 @@
 
 import Foundation
 
-class RootMovieRouter {
+public final class RootMovieRouter {
     var viewController: RootMovieViewController?
+    
+    public init(){}
 }
