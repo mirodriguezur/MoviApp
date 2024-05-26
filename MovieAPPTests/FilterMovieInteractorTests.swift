@@ -1,16 +1,15 @@
 //
-//  RootMovieInteractorTests.swift
+//  FilterMovieInteractorTests.swift
 //  MovieAPPTests
 //
-//  Created by Michael Alexander Rodriguez Urbina on 25/05/24.
+//  Created by Michael Alexander Rodriguez Urbina on 26/05/24.
 //
 
 import XCTest
-import Foundation
 import MovieAPP
 
-final class RootMovieInteractorTests: XCTestCase {
-    var sut: RootMovieInteractor!
+final class FilterMovieInteractorTests: XCTestCase {
+    var sut: FilterMovieInteractor!
     var client: HTTPClientSpy!
     var url: URL!
 
@@ -18,7 +17,7 @@ final class RootMovieInteractorTests: XCTestCase {
         super.setUp()
         url = makeAnyURL()
         client = HTTPClientSpy()
-        sut = RootMovieInteractor(client: client)
+        sut = FilterMovieInteractor(client: client)
     }
 
     override func tearDown() {
@@ -26,23 +25,10 @@ final class RootMovieInteractorTests: XCTestCase {
         sut = nil
        super.tearDown()
     }
-    
-    func test_load_requestListOfMoviesFromURL() {
-        sut.loadMovies(url: makeAnyURL()) { _ in }
-        
-        XCTAssertEqual(client.requestedURLs, [url])
-    }
-    
-    func test_loadTwice_requestsListOfItemsFromURL() {
-        sut.loadMovies(url: makeAnyURL()) { _ in }
-        sut.loadMovies(url: makeAnyURL()) { _ in }
-        
-        XCTAssertEqual(client.requestedURLs, [url, url])
-    }
-    
+
     func test_load_deliversErrorWhenClientFails() {
-        var capturedResults = [RootMovieInteractor.Result]()
-        sut.loadMovies(url: makeAnyURL()) { capturedResults.append($0)
+        var capturedResults = [FilterMovieInteractor.Result]()
+        sut.loadFilteredMovies(parameters: makeParameters()) { capturedResults.append($0)
         }
         
         let clientError = NSError(domain: "Test", code: 0)
@@ -52,8 +38,8 @@ final class RootMovieInteractorTests: XCTestCase {
     }
     
     func test_load_deliversErrorWhenHTTPResponseIsDiferentTo200() {
-        var capturedResults = [RootMovieInteractor.Result]()
-        sut.loadMovies(url: makeAnyURL()) { capturedResults.append($0) }
+        var capturedResults = [FilterMovieInteractor.Result]()
+        sut.loadFilteredMovies(parameters: makeParameters()) { capturedResults.append($0) }
         
         let statusResponseWithError = [400, 404, 500, 503]
         statusResponseWithError.forEach { statusCode in
@@ -64,8 +50,8 @@ final class RootMovieInteractorTests: XCTestCase {
     }
     
     func test_load_deliversErrorWhenResponseWithInvalidJSON(){
-        var capturedResults = [RootMovieInteractor.Result]()
-        sut.loadMovies(url: makeAnyURL()) { capturedResults.append($0)}
+        var capturedResults = [FilterMovieInteractor.Result]()
+        sut.loadFilteredMovies(parameters: makeParameters()) { capturedResults.append($0)}
         
         let invalidJSON = Data(bytes: "invalid json", count: 0)
         client.complete(withStatusCode: 200, data: invalidJSON)
@@ -73,7 +59,7 @@ final class RootMovieInteractorTests: XCTestCase {
         XCTAssertEqual(capturedResults, [.failure(.invalidData)])
     }
     
-    func test_load_deliversListOfMoviesOn200HTTPResponseWithJSONItems() {
+    func test_load_deliversOnlyListOfEnglishMovies_On200HTTPResponse_whenEnglishLanguageIsSelected() {
         let movie1 = makeMovieItem()
         let movie1JSON = makeJSON(movie: movie1)
         
@@ -87,8 +73,11 @@ final class RootMovieInteractorTests: XCTestCase {
             "total_results": 2
             ]
         
-        var capturedResults = [RootMovieInteractor.Result]()
-        sut.loadMovies(url: makeAnyURL()) { capturedResults.append($0) }
+        var parameters = makeParameters()
+        parameters.setupValidParameters()
+        
+        var capturedResults = [FilterMovieInteractor.Result]()
+        sut.loadFilteredMovies(parameters: parameters) { capturedResults.append($0) }
         
         let json = try! JSONSerialization.data(withJSONObject: moviesJSON)
         client.complete(withStatusCode: 200, data: json)
@@ -97,9 +86,11 @@ final class RootMovieInteractorTests: XCTestCase {
     }
     
     func test_load_afterTheSutHasBeenDeinitializedItShouldReturnNoResult() {
-        var capturedResults = [RootMovieInteractor.Result]()
-        sut?.loadMovies(url: makeAnyURL()) { capturedResults.append($0)
-        }
+        var capturedResults = [FilterMovieInteractor.Result]()
+        var parameters = makeParameters()
+        parameters.setupValidParameters()
+        
+        sut?.loadFilteredMovies(parameters: parameters) { capturedResults.append($0) }
         
         sut = nil
         client.complete(withStatusCode: 200, data: Data(_: "[{}]".utf8))
@@ -107,16 +98,25 @@ final class RootMovieInteractorTests: XCTestCase {
         XCTAssertTrue(capturedResults.isEmpty)
     }
     
-    
     //MARK: - helpers
     
-    func makeSUT() -> (sut: RootMovieInteractor, client: HTTPClientSpy) {
+    func makeSUT() -> (sut: FilterMovieInteractor, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
-        let sut =  RootMovieInteractor(client: client)
+        let sut =  FilterMovieInteractor(client: client)
         return(sut, client)
     }
     
     func makeAnyURL() -> URL {
         URL(string: "https://anyurl.com")!
+    }
+    
+    private func makeParameters(language: String = "English",
+                               forAdults: Bool = false,
+                               operatorName: Int = 0,
+                               average: String = "5") -> FilterMovieParameters {
+        return FilterMovieParameters(language: language,
+                                     forAdults: forAdults,
+                                     operatorName: operatorName,
+                                     average: average)
     }
 }
