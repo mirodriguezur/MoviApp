@@ -25,19 +25,28 @@ class RootMovieInteractorSpy: RootMovieInteractorInput {
     func loadTopRatedMovies(completion: @escaping (MovieAPP.RootMovieInteractor.Result) -> Void) {
         loadTopRatedMoviesCalled = true
     }
-    
-    
 }
+
+class RootMovieRouterSpy: RootMovieRouterProtocol {
+    var navigateToFilterMovieCalled = false
+    
+    func navigateToFilterMovieModule() {
+        navigateToFilterMovieCalled = true
+    }
+}
+
+
+// MARK: RootMoviePresenterTests
 
 final class RootMoviePresenterTests: XCTestCase {
     var sut: RootMoviePresenter!
     var interactor: RootMovieInteractorSpy!
-    var router: RootMovieRouter!
+    var router: RootMovieRouterSpy!
     
     override func setUp() {
         super.setUp()
         interactor = RootMovieInteractorSpy()
-        router = RootMovieRouter()
+        router = RootMovieRouterSpy()
         sut = RootMoviePresenter(interactor: interactor, router: router)
     }
 
@@ -72,5 +81,10 @@ final class RootMoviePresenterTests: XCTestCase {
         XCTAssertTrue(interactor.loadTopRatedMoviesCalled)
         XCTAssertFalse(interactor.loadPopularMoviesCalled)
     }
-
+    
+    func test_hanleFilterButtonTapped_requestNavigateToFilterMovieModule() {
+        sut.handleFilterButtonTapped()
+        
+        XCTAssertTrue(router.navigateToFilterMovieCalled)
+    }
 }

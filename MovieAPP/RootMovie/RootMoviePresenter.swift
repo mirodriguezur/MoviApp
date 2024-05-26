@@ -20,12 +20,12 @@ public enum RootMovieMode {
 }
 
 public final class RootMoviePresenter: RootMoviePresenterInput {
-    private let router: RootMovieRouter
+    private let router: RootMovieRouterProtocol
     private let interactor: RootMovieInteractorInput
     weak var view: RootMovieViewControllerProtocol?
     public var listOfMovies: [GeneralMovieEntity] = []
     
-    public init(interactor: RootMovieInteractorInput, router: RootMovieRouter) {
+    public init(interactor: RootMovieInteractorInput, router: RootMovieRouterProtocol) {
         self.interactor = interactor
         self.router = router
     }
