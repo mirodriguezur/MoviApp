@@ -42,34 +42,27 @@ public final class RootMoviePresenter: RootMoviePresenterInput {
         case .popularMovie:
             interactor.loadPopularMovies { [weak self] result in
                 guard let self = self else { return }
-                switch result {
-                case let .success(movies):
-                    self.listOfMovies = movies
-                    self.view?.update()
-                case let .failure(error):
-                    switch error {
-                    case .connectivity:
-                        self.view?.showConnectivityErrorAlert()
-                    case .invalidData:
-                        self.view?.showInvalidDataErrorAlert()
-                    }
-                }
+                handleResult(result, self)
             }
         case .topRatedMovie:
             interactor.loadTopRatedMovies { [weak self] result in
                 guard let self = self else { return }
-                switch result {
-                case let .success(movies):
-                    self.listOfMovies = movies
-                    self.view?.update()
-                case let .failure(error):
-                    switch error {
-                    case .connectivity:
-                        self.view?.showConnectivityErrorAlert()
-                    case .invalidData:
-                        self.view?.showInvalidDataErrorAlert()
-                    }
-                }
+                handleResult(result, self)
+            }
+        }
+    }
+    
+    private func handleResult(_ result: RootMovieInteractor.Result, _ self: RootMoviePresenter) {
+        switch result {
+        case let .success(movies):
+            self.listOfMovies = movies
+            self.view?.update()
+        case let .failure(error):
+            switch error {
+            case .connectivity:
+                self.view?.showConnectivityErrorAlert()
+            case .invalidData:
+                self.view?.showInvalidDataErrorAlert()
             }
         }
     }
