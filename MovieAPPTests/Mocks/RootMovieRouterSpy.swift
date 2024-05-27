@@ -9,13 +9,15 @@ import Foundation
 import MovieAPP
 
 class RootMovieRouterSpy: RootMovieRouterProtocol {
+    var navigateToFilterMovieCalled = false
+    var navigateToSearchMovieCalled = false
+    
     func navigateToSearchMovieModule() {
+        navigateToSearchMovieCalled =  true
     }
     
     func navigateToDetailMovie(with movie: MovieAPP.GeneralMovieEntity) {
     }
-    
-    var navigateToFilterMovieCalled = false
     
     func navigateToFilterMovieModule() {
         navigateToFilterMovieCalled = true

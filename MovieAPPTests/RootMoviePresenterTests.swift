@@ -57,4 +57,10 @@ final class RootMoviePresenterTests: XCTestCase {
         
         XCTAssertTrue(router.navigateToFilterMovieCalled)
     }
+    
+    func test_hanleSearchButtonTapped_requestNavigateToFilterMovieModule() {
+        sut.handleSearchButtonTapped()
+        
+        XCTAssertTrue(router.navigateToSearchMovieCalled)
+    }
 }
