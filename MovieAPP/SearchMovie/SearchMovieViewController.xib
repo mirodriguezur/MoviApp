@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchMovieViewController" customModule="MovieAPP" customModuleProvider="target">
+            <connections>
+                <outlet property="searchMovieBar" destination="5et-pV-cYm" id="EcI-jN-LKy"/>
+                <outlet property="tableView" destination="gKV-FJ-NoD" id="T2V-MP-4me"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <searchBar contentMode="redraw" placeholder="Search Movie" translatesAutoresizingMaskIntoConstraints="NO" id="5et-pV-cYm">
+                    <rect key="frame" x="10" y="69" width="285" height="56"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="N5G-g5-gPw"/>
+                    </connections>
+                </searchBar>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="gKV-FJ-NoD">
+                    <rect key="frame" x="10" y="140" width="373" height="678"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FmF-uL-8KW">
+                    <rect key="frame" x="305" y="79" width="78" height="35"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="filled" title="Search"/>
+                    <connections>
+                        <action selector="searchButtonAction:" destination="-1" eventType="touchUpInside" id="Az8-kC-R8f"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="FmF-uL-8KW" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="8V8-DY-jG2"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="FmF-uL-8KW" secondAttribute="trailing" constant="10" id="NTb-IS-lBu"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="gKV-FJ-NoD" secondAttribute="trailing" constant="10" id="RVc-lB-9Sg"/>
+                <constraint firstItem="5et-pV-cYm" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="Whu-5F-cu1"/>
+                <constraint firstItem="gKV-FJ-NoD" firstAttribute="top" secondItem="5et-pV-cYm" secondAttribute="bottom" constant="15" id="Yd0-JF-Lnr"/>
+                <constraint firstItem="gKV-FJ-NoD" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="aAl-j0-hwE"/>
+                <constraint firstItem="gKV-FJ-NoD" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="dKc-oj-kkX"/>
+                <constraint firstItem="5et-pV-cYm" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="glU-xT-hyG"/>
+                <constraint firstItem="FmF-uL-8KW" firstAttribute="leading" secondItem="5et-pV-cYm" secondAttribute="trailing" constant="10" id="rjr-R5-lRF"/>
+            </constraints>
+            <point key="canvasLocation" x="96.946564885496173" y="-11.267605633802818"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

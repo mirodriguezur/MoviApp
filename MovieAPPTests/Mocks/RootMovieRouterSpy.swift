@@ -9,6 +9,9 @@ import Foundation
 import MovieAPP
 
 class RootMovieRouterSpy: RootMovieRouterProtocol {
+    func navigateToSearchMovieModule() {
+    }
+    
     func navigateToDetailMovie(with movie: MovieAPP.GeneralMovieEntity) {
     }
     

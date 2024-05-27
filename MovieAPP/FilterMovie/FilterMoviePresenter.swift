@@ -18,7 +18,7 @@ public final class FilterMoviePresenter: FilterMoviePresenterInput {
     private let interactor: FilterMovieInteractorInput
     public var listOfMovies: [GeneralMovieEntity] = []
     
-    init(interactor: FilterMovieInteractorInput) {
+    public init(interactor: FilterMovieInteractorInput) {
         self.interactor = interactor
     }
     

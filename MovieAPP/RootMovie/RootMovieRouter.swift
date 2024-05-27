@@ -10,6 +10,7 @@ import Foundation
 public protocol RootMovieRouterProtocol {
     func navigateToFilterMovieModule()
     func navigateToDetailMovie(with movie: GeneralMovieEntity)
+    func navigateToSearchMovieModule()
 }
 
 public final class RootMovieRouter: RootMovieRouterProtocol {
@@ -23,7 +24,12 @@ public final class RootMovieRouter: RootMovieRouterProtocol {
     }
     
     public func navigateToDetailMovie(with movie: GeneralMovieEntity) {
-        let detailMovieViewController = DetailMovieRouter.createFilterMovieViewController(with: movie)
+        let detailMovieViewController = DetailMovieRouter.createDetailMovieViewController(with: movie)
         self.viewController?.present(detailMovieViewController, animated: true)
+    }
+    
+    public func navigateToSearchMovieModule() {
+        let searchMovieViewController = SearchMovieRouter.createSearchMovieViewController()
+        self.viewController?.navigationController?.pushViewController(searchMovieViewController, animated: true)
     }
 }

@@ -13,7 +13,7 @@ public protocol FilterMovieViewControllerProtocol: AnyObject {
     func showInvalidDataErrorAlert()
 }
 
-class FilterMovieViewController: UIViewController, FilterMovieViewControllerProtocol {
+public final class FilterMovieViewController: UIViewController, FilterMovieViewControllerProtocol {
     
     private let presenter: FilterMoviePresenterInput
     
@@ -27,16 +27,17 @@ class FilterMovieViewController: UIViewController, FilterMovieViewControllerProt
     
     private let categories = ["English", "Spanish", "Korean"]
 
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         title = "Filter movies by categories"
         pickerView.delegate = self
         pickerView.dataSource = self
         languageTextField.inputView = pickerView
         setupTableView()
+        setupTapGesture()
     }
     
-    init(presenter: FilterMoviePresenterInput) {
+    public init(presenter: FilterMoviePresenterInput) {
         self.presenter = presenter
         super.init(nibName: "FilterMovieViewController", bundle: nil)
     }
@@ -54,7 +55,7 @@ class FilterMovieViewController: UIViewController, FilterMovieViewControllerProt
     
     // MARK: FilterMovieViewControllerProtocol
     
-    func update() {
+    public func update() {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
@@ -80,22 +81,32 @@ class FilterMovieViewController: UIViewController, FilterMovieViewControllerProt
             self.present(message, animated: true, completion: nil)
         }
     }
+    
+    // MARK: - Setup Tap Gesture
+    private func setupTapGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc private func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }
 
 extension FilterMovieViewController: UIPickerViewDelegate, UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         1
     }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         categories.count
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         categories[row]
     }
     
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         languageTextField.text = categories[row]
         languageTextField.resignFirstResponder()
     }

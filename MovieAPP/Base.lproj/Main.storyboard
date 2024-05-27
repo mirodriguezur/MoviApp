@@ -48,12 +48,20 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="MovieApp" id="3Nn-M3-Fxo">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="line.3.horizontal.decrease.circle" catalog="system" id="rhw-ur-oSs">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <action selector="filterButtonAction:" destination="BYZ-38-t0r" id="lBT-iJ-lr5"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Item" image="line.3.horizontal.decrease.circle" catalog="system" id="rhw-ur-oSs">
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="filterButtonAction:" destination="BYZ-38-t0r" id="lBT-iJ-lr5"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" image="magnifyingglass" catalog="system" id="GQU-HL-ADe">
+                                <color key="tintColor" systemColor="labelColor"/>
+                                <connections>
+                                    <action selector="searchButtonAction:" destination="BYZ-38-t0r" id="q2U-rk-gPa"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="j2w-de-Wfs" id="mkX-BE-h5P"/>
@@ -84,6 +92,10 @@
     </scenes>
     <resources>
         <image name="line.3.horizontal.decrease.circle" catalog="system" width="128" height="123"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

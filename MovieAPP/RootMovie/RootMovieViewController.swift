@@ -35,6 +35,10 @@ public final class RootMovieViewController: UIViewController, RootMovieViewContr
         presenter?.handleFilterButtonTapped()
     }
     
+    @IBAction func searchButtonAction(_ sender: UIBarButtonItem) {
+        presenter?.handleSearchButtonTapped()
+    }
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.onViewAppear()

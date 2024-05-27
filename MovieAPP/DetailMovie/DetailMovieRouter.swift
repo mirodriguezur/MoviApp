@@ -8,7 +8,7 @@
 import Foundation
 
 public final class DetailMovieRouter {
-    static func createFilterMovieViewController(with movie: GeneralMovieEntity) -> DetailMovieViewController {
+    static func createDetailMovieViewController(with movie: GeneralMovieEntity) -> DetailMovieViewController {
         let presenter = DetailMoviePresenter()
         let view = DetailMovieViewController(movie: movie)
         presenter.view = view
