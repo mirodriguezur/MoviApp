@@ -40,7 +40,12 @@ class BasicMovieTableViewCell: UITableViewCell {
     func setupCell(with movie: GeneralMovieEntity) {
         self.imgView.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/w200" + movie.imageURL))
         self.titleLabel.text = movie.title
-        self.descriptionLabel.text = movie.overview
+        if movie.overview.isEmpty {
+            self.descriptionLabel.text = "No description found for this movie."
+        } else {
+            self.descriptionLabel.text = movie.overview
+        }
+        
         self.scoreLabel.text = String(movie.votes)
     }
 }

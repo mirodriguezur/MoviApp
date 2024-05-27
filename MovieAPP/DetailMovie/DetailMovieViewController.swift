@@ -35,7 +35,11 @@ class DetailMovieViewController: UIViewController {
     private func setupView() {
         self.titleLabel.text = movie.title
         self.imageView.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/w200" + movie.imageURL))
-        self.descriptionLabel.text = movie.overview
+        if movie.overview.isEmpty {
+            self.descriptionLabel.text = "No description found for this movie."
+        } else {
+            self.descriptionLabel.text = movie.overview
+        }
         self.votesLabel.text = String(movie.votes)
         self.languageLabel.text = movie.language
     }
