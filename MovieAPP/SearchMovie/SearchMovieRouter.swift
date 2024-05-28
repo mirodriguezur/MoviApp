@@ -7,13 +7,27 @@
 
 import Foundation
 
-public final class SearchMovieRouter {
+public protocol SearchMovieRouterProtocol {
+    func navigateToDetailMovie(with movie: GeneralMovieEntity)
+}
+
+public final class SearchMovieRouter: SearchMovieRouterProtocol {
+    public var viewController: SearchMovieViewController?
+    
     static func createSearchMovieViewController() -> SearchMovieViewController {
         let interactor = SearchMovieInteractor()
-        let presenter = SearchMoviePresenter(interactor: interactor)
+        let router = SearchMovieRouter()
+        let presenter = SearchMoviePresenter(interactor: interactor, router: router)
         let view = SearchMovieViewController(presenter: presenter)
+        
+        router.viewController = view
         presenter.view = view
         
         return view
+    }
+    
+    public func navigateToDetailMovie(with movie: GeneralMovieEntity) {
+        let detailMovieViewController = DetailMovieRouter.createDetailMovieViewController(with: movie)
+        self.viewController?.present(detailMovieViewController, animated: true)
     }
 }

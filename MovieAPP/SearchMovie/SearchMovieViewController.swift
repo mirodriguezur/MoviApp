@@ -69,6 +69,7 @@ public final class SearchMovieViewController: UIViewController, SearchMovieViewC
     // MARK: - Setup Tap Gesture
     private func setupTapGesture() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGesture.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGesture)
     }
     
@@ -80,6 +81,7 @@ public final class SearchMovieViewController: UIViewController, SearchMovieViewC
 extension SearchMovieViewController: UITableViewDelegate, UITableViewDataSource {
     
     public func setupTableView() {
+        tableView.allowsSelection = true
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
@@ -87,11 +89,7 @@ extension SearchMovieViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func registerCell() {
-        tableView.register(BasicMovieTableViewCell.register(), forCellReuseIdentifier: BasicMovieTableViewCell.identifier)
-    }
-    
-    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        150
+        tableView.register(MinimalMovieTableViewCell.self, forCellReuseIdentifier: MinimalMovieTableViewCell.identifier)
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -99,11 +97,16 @@ extension SearchMovieViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: BasicMovieTableViewCell.identifier, for: indexPath) as? BasicMovieTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MinimalMovieTableViewCell.identifier, for: indexPath) as? MinimalMovieTableViewCell else {
             return UITableViewCell()
         }
         cell.setupCell(with: presenter.listOfMovies[indexPath.row])
         return cell
+    }
+    
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let movie = presenter.listOfMovies[indexPath.row]
+        presenter.handleCellSelected(with: movie)
     }
     
 }

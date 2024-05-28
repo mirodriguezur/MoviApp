@@ -10,15 +10,18 @@ import Foundation
 public protocol SearchMoviePresenterInput {
     var listOfMovies: [GeneralMovieEntity] { get }
     func handleSearchButtonTapped(with title: String)
+    func handleCellSelected(with movie: GeneralMovieEntity)
 }
 
 public final class SearchMoviePresenter: SearchMoviePresenterInput {
     weak var view: SearchMovieViewControllerProtocol?
     private let interactor: SearchMovieInteractorInput
+    private let router: SearchMovieRouterProtocol
     public var listOfMovies: [GeneralMovieEntity] = []
     
-    public init(interactor: SearchMovieInteractorInput) {
+    public init(interactor: SearchMovieInteractorInput, router: SearchMovieRouterProtocol) {
         self.interactor = interactor
+        self.router = router
     }
     
     public func handleSearchButtonTapped(with title: String) {
@@ -37,5 +40,9 @@ public final class SearchMoviePresenter: SearchMoviePresenterInput {
                 }
             }
         }
+    }
+    
+    public func handleCellSelected(with movie: GeneralMovieEntity) {
+        router.navigateToDetailMovie(with: movie)
     }
 }
