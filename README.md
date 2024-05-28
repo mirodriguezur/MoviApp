@@ -27,6 +27,8 @@ Para explicar la estructura VIPER de la app MovieApp, observe el diagrama a cont
 ### Descripción del Módulo RootMovie
 RootMovieViewController es la vista principal que contiene un SegmentedControl para alternar entre películas populares y mejor valoradas. Además, cuenta con dos botones: uno para buscar películas y otro para filtrar películas por categoría. Cada uno de estos elementos visuales responde a la interacción del usuario. La responsabilidad de RootMovieViewController es mostrar la información adecuada y notificar al RootMoviePresenter sobre cualquier interacción o evento generado por el usuario.
 
+![Screenshot 2024-05-27 at 10 10 48 PM](https://github.com/mirodriguezur/MoviApp/assets/66835869/c662fb35-e84a-46bd-92e5-11320b4298a5)
+
 ### Flujo de Trabajo en VIPER
 1. Vista (RootMovieViewController)
    - Muestra las películas y proporciona la interfaz de usuario con un SegmentedControl y dos botones (Buscar y Filtrar).
@@ -70,4 +72,7 @@ El proyecto cuenta con algunos tests unitarios. Dado que cada módulo VIPER sigu
    > open MovieApp.xcodeproj
 4. El proyecto tiene una dependencia en [Kingfisher 7.11.0](https://github.com/onevcat/Kingfisher) debido a que facilita un renderizado sencillo de imágenes. Package Manager debería poder instalarlo sin ningún problema, pero en caso de que no funcione, por favor, vuelve a cargar esta dependencia a través de Switch Package Manager.
 5. La API utilizada en este proyecto requiere una clave apiKey para acceder a los datos proporcionados por los endpoints. El proyecto actualmente utiliza una apiKey personal, la cual se encuentra ubicada en el archivo URLSessionHTTPClient. Si no se está obteniendo información de la API, una posible solución es registrarse en [The Movie Database (TMDb) API](https://developers.themoviedb.org) para obtener una nueva apiKey. Luego, reemplace la clave existente con la nueva clave obtenida.
+
+## DEMO
+![MovieAPP](https://github.com/mirodriguezur/MoviApp/assets/66835869/00fa84d1-83dd-433a-b991-9fa2949008ce)
 
