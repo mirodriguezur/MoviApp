@@ -10,16 +10,19 @@ import Foundation
 public protocol FilterMoviePresenterInput: AnyObject {
     var listOfMovies: [GeneralMovieEntity] { get }
     func handleSearchButtonTapped(language: String, forAdults:Bool, operatorName: Int, average: String)
+    func handleCellSelected(with movie: GeneralMovieEntity)
 }
 
 public final class FilterMoviePresenter: FilterMoviePresenterInput {
     
     weak var view: FilterMovieViewController?
     private let interactor: FilterMovieInteractorInput
+    private let router: FilterMovierRouterProtocol
     public var listOfMovies: [GeneralMovieEntity] = []
     
-    public init(interactor: FilterMovieInteractorInput) {
+    public init(interactor: FilterMovieInteractorInput, router: FilterMovierRouterProtocol) {
         self.interactor = interactor
+        self.router = router
     }
     
     public func handleSearchButtonTapped(language: String, forAdults: Bool, operatorName: Int, average: String) {
@@ -45,5 +48,9 @@ public final class FilterMoviePresenter: FilterMoviePresenterInput {
                 }
             }
         }
+    }
+    
+    public func handleCellSelected(with movie: GeneralMovieEntity) {
+        router.navigateToDetailMovie(with: movie)
     }
 }

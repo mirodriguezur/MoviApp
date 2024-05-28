@@ -22,8 +22,8 @@ public final class FilterMovieViewController: UIViewController, FilterMovieViewC
     
     @IBOutlet weak var adultSwitch: UISwitch!
     @IBOutlet weak var rangeSegmentedControl: UISegmentedControl!
-    @IBOutlet weak var averageVotesTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var averageVotesTextField: UITextField!
     
     private let categories = ["English", "Spanish", "Korean"]
 
@@ -85,6 +85,7 @@ public final class FilterMovieViewController: UIViewController, FilterMovieViewC
     // MARK: - Setup Tap Gesture
     private func setupTapGesture() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGesture.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGesture)
     }
     
@@ -115,18 +116,14 @@ extension FilterMovieViewController: UIPickerViewDelegate, UIPickerViewDataSourc
 extension FilterMovieViewController: UITableViewDelegate, UITableViewDataSource {
     
     public func setupTableView() {
+        tableView.allowsSelection = true
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        
         registerCell()
     }
     
     func registerCell() {
-        tableView.register(BasicMovieTableViewCell.register(), forCellReuseIdentifier: BasicMovieTableViewCell.identifier)
-    }
-    
-    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        150
+        tableView.register(MinimalMovieTableViewCell.self, forCellReuseIdentifier: MinimalMovieTableViewCell.identifier)
     }
     
     public func numberOfSections(in tableView: UITableView) -> Int {
@@ -138,11 +135,16 @@ extension FilterMovieViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: BasicMovieTableViewCell.identifier, for: indexPath) as? BasicMovieTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MinimalMovieTableViewCell.identifier, for: indexPath) as? MinimalMovieTableViewCell else {
             return UITableViewCell()
         }
         cell.setupCell(with: presenter.listOfMovies[indexPath.row])
         return cell
+    }
+    
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let movie = presenter.listOfMovies[indexPath.row]
+        presenter.handleCellSelected(with: movie)
     }
 }
 
