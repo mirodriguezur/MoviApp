@@ -10,47 +10,38 @@ import Foundation
 public struct FilterMovieParameters {
     public var language: String
     public let forAdults: String
-    public var operatorRange: String
+    public var operatorName: String
     public let average: String
     
     public init(language: String, forAdults: Bool, operatorName: Int, average: String) {
         self.forAdults = String(forAdults)
-        self.operatorRange = String(operatorName)
+        self.operatorName = String(operatorName)
         self.average = average
         self.language = language
     }
     
     public mutating func setupValidParameters() {
         setupValidLanguage()
-        setupValidOperatorRange()
+        setupValidOperatorName()
     }
     
     private mutating func setupValidLanguage () {
-        var validLanguage = ""
-        switch self.language {
-        case "English":
-            validLanguage = "en"
-        case "Spanish":
-            validLanguage = "es"
-        case "Korean":
-            validLanguage = "ko"
-        default:
-            validLanguage = "en"
-        }
-        language = validLanguage
+        let languageMap = ["English": "en", 
+                           "Spanish": "es",
+                           "Korean": "ko",
+                           "French": "fr",
+                           "German": "de",
+                           "Italian": "it",
+                           "Portuguese": "pt",
+                           "Russian": "ru",
+                           "Japanese": "ja"]
+                language = languageMap[self.language] ?? "en"
     }
     
-    private mutating func setupValidOperatorRange () {
-        var validOperatorRange = ""
-        switch self.operatorRange {
-        case "0":
-            validOperatorRange = "gte"
-        case "1":
-            validOperatorRange = "lte"
-        default:
-            validOperatorRange = "lte"
-        }
-        operatorRange = validOperatorRange
+    private mutating func setupValidOperatorName () {
+        let operatorNameMap = ["0": "gte", 
+                                "1": "lte"]
+                operatorName = operatorNameMap[self.operatorName] ?? "lte"
         
     }
 }

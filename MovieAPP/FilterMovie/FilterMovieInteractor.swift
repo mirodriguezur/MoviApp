@@ -62,9 +62,9 @@ public final class FilterMovieInteractor: FilterMovieInteractorInput {
         }
         if !parameters.average.isEmpty {
             var operatorName: String = "lte"
-            if parameters.operatorRange == "lte" {
+            if parameters.operatorName == "lte" {
                 operatorName = "vote_average.lte"
-            } else if parameters.operatorRange == "gte" {
+            } else if parameters.operatorName == "gte" {
                 operatorName = "vote_average.gte"
             }
             queryItems.append(.init(name: operatorName, value: parameters.average))

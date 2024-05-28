@@ -25,7 +25,7 @@ public final class FilterMovieViewController: UIViewController, FilterMovieViewC
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var averageVotesTextField: UITextField!
     
-    private let categories = ["English", "Spanish", "Korean"]
+    private let categories = ["English", "French", "German", "Italian", "Japanese", "Korean", "Portuguese", "Russian", "Spanish"]
 
     public override func viewDidLoad() {
         super.viewDidLoad()
